@@ -71,26 +71,6 @@ contract('Collectibles', function(accounts) {
         assert.equal(eventEmitted, true, 'switching the sale status of an item should emit a SwitchSaleStatus event')
     })
 
-    /*it("should allow someone to purchase an item", async() => {
-
-        await instance.convert_art(art[1], art[2] ,art[3], art[5], {from: alice})
-        const tx2 = await instance.switchSaleStatus(0, {from: alice})
-        
-        var aliceBalanceBefore = await web3.eth.getBalance(alice)
-        var bobBalanceBefore = await web3.eth.getBalance(bob)
-        await instance.buy_art(0, {from: bob, value: 32165})
-
-        var aliceBalanceAfter = await web3.eth.getBalance(alice)
-        var bobBalanceAfter = await web3.eth.getBalance(bob)
-
-        const result = await instance.getArt.call(0)
-
-        assert.equal(result[6], bob, 'the owner address should be set bob when he purchases an item')
-        assert.equal(result[7], false, 'the state of the item should be "Not For Sale"')
-        assert.equal(new BN(aliceBalanceAfter).toString(), new BN(aliceBalanceBefore).add(new BN(32165)).toString(), "alice's balance should be increased by the price of the item")
-        assert.isBelow(Number(bobBalanceAfter), Number(new BN(bobBalanceBefore).sub(new BN(32165))), "bob's balance should be reduced by more than the price of the item (including gas costs)")
-    })*/
-
     it("should give error when a buyer tries to buy a not for sale item", async() => {
     	const tx = await instance.convert_art(art[1], art[2] ,art[3], art[5], {from: alice})
     	await catchRevert(instance.buy_art(0, {from: bob, value: 32165}))
