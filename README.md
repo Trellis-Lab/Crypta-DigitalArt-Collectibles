@@ -1,4 +1,4 @@
-###Crypta-DigitalArt-Collectibles
+# Crypta-DigitalArt-Collectibles
 
 This project is made for Consensys Ethereum Bootcamp Spring 2019
 >Author: Manank Patni
@@ -7,7 +7,7 @@ The project creates a decentralised space for the designers and artists to showc
 
 It uses the ERC721 standard for the Non Fungible Token Creation. Any user can submit their art piece like a wallpaper, digital paing, poster or etc. They can showcase it and even trade it for ether.
 
-##How to set it up?
+## How to set it up?
 
 - Clone this directory using `git clone`
 - Run ganache using `ganache-cli` or ganache gui
@@ -15,7 +15,7 @@ It uses the ERC721 standard for the Non Fungible Token Creation. Any user can su
 - Start the Frontend Server using `npm run dev`
 - The site can be seen on `localhost:3000`
 
-##What all can it currently do?
+## What all can it currently do?
 - A person can connect to Metamask to browse the site
 - Any user can submit their art/design
 - Users can see all the collectibles
@@ -47,5 +47,3 @@ It uses the ERC721 standard for the Non Fungible Token Creation. Any user can su
 - [ ] uPort
 - [ ] ENS
 - [ ] Oracle
-
-
