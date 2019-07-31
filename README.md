@@ -1,4 +1,5 @@
-#Crypta-DigitalArt-Collectibles
+###Crypta-DigitalArt-Collectibles
+
 This project is made for Consensys Ethereum Bootcamp Spring 2019
 >Author: Manank Patni
 
