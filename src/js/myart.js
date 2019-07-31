@@ -50,7 +50,7 @@ initContract: function(data) {
   // Set the provider for our contract
   App.contracts.Collectibles.setProvider(App.web3Provider);
 
-  // Use our contract to retrieve and mark the adopted pets
+  // Use our contract to retrieve list all art
   return App.listArt();
 });
 
@@ -114,8 +114,8 @@ createArt: async function(event){
 },
 
 listArt: function(art_list){
-  var petsRow = $('#petsRow');
-  petsRow.empty();
+  var artRow = $('#artRow');
+  artRow.empty();
   var collectiblesinstance;
 
   App.contracts.Collectibles.deployed().then(function(instance) {
@@ -131,23 +131,22 @@ listArt: function(art_list){
       for (i = 0; i < arts.length; i++) {
         collectiblesinstance.getArt.call(arts[i]).then(function(fetched_art){
           if (fetched_art !== '0x0000000000000000000000000000000000000000') {
-            var petsRow = $('#petsRow');
-            var petTemplate = $('#petTemplate');
-            $('.panel-pet').eq(i).find('button').text('Success').attr('disabled', true);
-            petTemplate.find('.panel-title').text(fetched_art[1]);
-            petTemplate.find('.art-desc').text(fetched_art[2]);
-            petTemplate.find('.art-image').attr('href',fetched_art[3]);
-            petTemplate.find('.art-price').text(fetched_art[5].c[0]);
-            petTemplate.find('.art-owner').text(fetched_art[4]);
-            petTemplate.find('.art-artist').text(fetched_art[6]);
-            petTemplate.find('.btn-adopt').attr('data-id', fetched_art[0].c[0]);
+            var artRow = $('#artRow');
+            var artTemplate = $('#artTemplate');
+            artTemplate.find('.panel-title').text(fetched_art[1]);
+            artTemplate.find('.art-desc').text(fetched_art[2]);
+            artTemplate.find('.art-image').attr('href',fetched_art[3]);
+            artTemplate.find('.art-price').text(fetched_art[5].c[0]);
+            artTemplate.find('.art-owner').text(fetched_art[4]);
+            artTemplate.find('.art-artist').text(fetched_art[6]);
+            artTemplate.find('.btn-adopt').attr('data-id', fetched_art[0].c[0]);
             if (fetched_art[7] == false) {
-              petTemplate.find('.btn-adopt').text('Put on Sale')
+              artTemplate.find('.btn-adopt').text('Put on Sale')
             }
             else{
-              petTemplate.find('.btn-adopt').text('Put off Sale');
+              artTemplate.find('.btn-adopt').text('Put off Sale');
             }
-            petsRow.append(petTemplate.html());
+            artRow.append(artTemplate.html());
           }
         });
       }
@@ -160,8 +159,8 @@ listArt: function(art_list){
 handleSwitchStatus: function(event) {
   event.preventDefault();
 
-  var petId = parseInt($(event.target).data('id'));
-  console.log(petId);
+  var artId = parseInt($(event.target).data('id'));
+  console.log(artId);
   var adoptionInstance;
 
   web3.eth.getAccounts(function(error, accounts) {
@@ -176,8 +175,8 @@ handleSwitchStatus: function(event) {
 
       console.log(adoptionInstance);
 
-    // Execute adopt as a transaction by sending account
-    return adoptionInstance.switchSaleStatus.sendTransaction(petId, {from: account});
+    // Execute switch sale status as a transaction by sending account
+    return adoptionInstance.switchSaleStatus.sendTransaction(artId, {from: account});
   }).then(function(result) {
     console.log(result);
     return App.listArt();

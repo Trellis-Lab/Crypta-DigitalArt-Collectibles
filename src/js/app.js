@@ -53,7 +53,7 @@ initContract: function(data) {
   // Set the provider for our contract
   App.contracts.Collectibles.setProvider(App.web3Provider);
 
-  // Use our contract to retrieve and mark the adopted pets
+  // Use our contract to retrieve art
   return App.listArt();
 });
 
@@ -61,12 +61,12 @@ initContract: function(data) {
 },
 
 bindEvents: function() {
-  $(document).on('click', '.btn-adopt', App.handleAdopt);
+  $(document).on('click', '.btn-buy', App.handleConvert);
 },
 
 listArt: function(art_list){
-  var petsRow = $('#petsRow');
-  petsRow.empty();
+  var artRow = $('#artRow');
+  artRow.empty();
   var collectiblesinstance;
 
   App.contracts.Collectibles.deployed().then(function(instance) {
@@ -83,24 +83,23 @@ listArt: function(art_list){
         collectiblesinstance.getArt.call(i).then(function(fetched_art){
           if (fetched_art !== '0x0000000000000000000000000000000000000000') {
             console.log(fetched_art);
-            var petsRow = $('#petsRow');
-            var petTemplate = $('#petTemplate');
-            $('.panel-pet').eq(i).find('button').text('Success').attr('disabled', true);
-            petTemplate.find('.panel-title').text(fetched_art[1]);
-            petTemplate.find('.art-desc').text(fetched_art[2]);
-            petTemplate.find('.art-image').attr('href',fetched_art[3]);
-            petTemplate.find('.art-price').text(fetched_art[5].c[0]);
-            petTemplate.find('.art-owner').text(fetched_art[4]);
-            petTemplate.find('.art-artist').text(fetched_art[6]);
-            petTemplate.find('.btn-adopt').attr('data-id', fetched_art[0].c[0]);
-            petTemplate.find('.btn-adopt').attr('data-price', fetched_art[5].c[0]);
+            var artRow = $('#artRow');
+            var artTemplate = $('#artTemplate');
+            artTemplate.find('.panel-title').text(fetched_art[1]);
+            artTemplate.find('.art-desc').text(fetched_art[2]);
+            artTemplate.find('.art-image').attr('href',fetched_art[3]);
+            artTemplate.find('.art-price').text(fetched_art[5].c[0]);
+            artTemplate.find('.art-owner').text(fetched_art[4]);
+            artTemplate.find('.art-artist').text(fetched_art[6]);
+            artTemplate.find('.btn-adopt').attr('data-id', fetched_art[0].c[0]);
+            artTemplate.find('.btn-adopt').attr('data-price', fetched_art[5].c[0]);
             if (fetched_art[7] == false) {
-              petTemplate.find('.btn-adopt').attr('disabled', true);
+              artTemplate.find('.btn-adopt').attr('disabled', true);
             }
             else{
-              petTemplate.find('.btn-adopt').attr('disabled', false);
+              artTemplate.find('.btn-adopt').attr('disabled', false);
             }
-            petsRow.append(petTemplate.html());
+            artRow.append(artTemplate.html());
           }
         });
       }
@@ -110,33 +109,11 @@ listArt: function(art_list){
   });
 },
 
-markAdopted: function(art_list, account) {
-
-  var collectiblesinstance;
-
-  App.contracts.Collectibles.deployed().then(function(instance) {
-    collectiblesinstance = instance;
-
-    return true;
-  }).then(function(art_count) {
-    for (i = 0; i < art_count; i++) {
-      if (art_list[i] !== '0x0000000000000000000000000000000000000000') {
-        $('.panel-pet').eq(i).find('button').text('Success').attr('disabled', true);
-      }
-    }
-  }).catch(function(err) {
-    console.log(err.message);
-  });
-
-},
-
-handleAdopt: function(event) {
+handleConvert: function(event) {
   event.preventDefault();
 
-  var petId = parseInt($(event.target).data('id'));
+  var artId = parseInt($(event.target).data('id'));
   var price = parseInt($(event.target).data('price'));
-  console.log(petId);
-  console.log(price);
   var CollectiblesInstance;
 
   web3.eth.getAccounts(function(error, accounts) {
@@ -149,8 +126,8 @@ handleAdopt: function(event) {
     App.contracts.Collectibles.deployed().then(function(instance) {
       CollectiblesInstance = instance;
 
-    // Execute adopt as a transaction by sending account
-    return CollectiblesInstance.buy_art.sendTransaction(petId, {from: account, value:price});
+    // Execute buy as a transaction by sending account
+    return CollectiblesInstance.buy_art.sendTransaction(artId, {from: account, value:price});
   }).then(function(result) {
     return App.listArt();
   }).catch(function(err) {
