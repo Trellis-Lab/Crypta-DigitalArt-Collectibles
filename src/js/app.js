@@ -83,21 +83,22 @@ listArt: function(art_list){
         collectiblesinstance.getArt.call(i).then(function(fetched_art){
           if (fetched_art !== '0x0000000000000000000000000000000000000000') {
             console.log(fetched_art);
+            console.log(fetched_art[5].toNumber());
             var artRow = $('#artRow');
             var artTemplate = $('#artTemplate');
             artTemplate.find('.panel-title').text(fetched_art[1]);
             artTemplate.find('.art-desc').text(fetched_art[2]);
             artTemplate.find('.art-image').attr('href',fetched_art[3]);
-            artTemplate.find('.art-price').text(fetched_art[5].c[0]);
+            artTemplate.find('.art-price').text(fetched_art[5].toNumber());
             artTemplate.find('.art-owner').text(fetched_art[4]);
             artTemplate.find('.art-artist').text(fetched_art[6]);
-            artTemplate.find('.btn-adopt').attr('data-id', fetched_art[0].c[0]);
-            artTemplate.find('.btn-adopt').attr('data-price', fetched_art[5].c[0]);
+            artTemplate.find('.btn-buy').attr('data-id', fetched_art[0].c[0]);
+            artTemplate.find('.btn-buy').attr('data-price', fetched_art[5].toNumber());
             if (fetched_art[7] == false) {
-              artTemplate.find('.btn-adopt').attr('disabled', true);
+              artTemplate.find('.btn-buy').attr('disabled', true);
             }
             else{
-              artTemplate.find('.btn-adopt').attr('disabled', false);
+              artTemplate.find('.btn-buy').attr('disabled', false);
             }
             artRow.append(artTemplate.html());
           }
@@ -113,7 +114,8 @@ handleConvert: function(event) {
   event.preventDefault();
 
   var artId = parseInt($(event.target).data('id'));
-  var price = parseInt($(event.target).data('price'));
+  var price = parseInt($(event.target).data('price'));  
+  console.log(price);
   var CollectiblesInstance;
 
   web3.eth.getAccounts(function(error, accounts) {

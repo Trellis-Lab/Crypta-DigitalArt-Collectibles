@@ -58,7 +58,7 @@ initContract: function(data) {
 },
 
 bindEvents: function() {
-  $(document).on('click', '.btn-adopt', App.handleSwitchStatus);
+  $(document).on('click', '.btn-buy', App.handleSwitchStatus);
   $(document).on('click', '#submit-art', App.createArt)
 },
 
@@ -136,15 +136,15 @@ listArt: function(art_list){
             artTemplate.find('.panel-title').text(fetched_art[1]);
             artTemplate.find('.art-desc').text(fetched_art[2]);
             artTemplate.find('.art-image').attr('href',fetched_art[3]);
-            artTemplate.find('.art-price').text(fetched_art[5].c[0]);
+            artTemplate.find('.art-price').text(fetched_art[5].toNumber());
             artTemplate.find('.art-owner').text(fetched_art[4]);
             artTemplate.find('.art-artist').text(fetched_art[6]);
-            artTemplate.find('.btn-adopt').attr('data-id', fetched_art[0].c[0]);
+            artTemplate.find('.btn-buy').attr('data-id', fetched_art[0].c[0]);
             if (fetched_art[7] == false) {
-              artTemplate.find('.btn-adopt').text('Put on Sale')
+              artTemplate.find('.btn-buy').text('Put on Sale')
             }
             else{
-              artTemplate.find('.btn-adopt').text('Put off Sale');
+              artTemplate.find('.btn-buy').text('Put off Sale');
             }
             artRow.append(artTemplate.html());
           }
