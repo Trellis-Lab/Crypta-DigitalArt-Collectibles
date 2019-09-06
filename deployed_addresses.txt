@@ -1,2 +1,140 @@
-Ropsten Address
-0xBA656709cebFF2cD47575aa8fbfe82Ae520d8E06
+You can improve web3's peformance when running Node.js versions older than 10.5.0 by installing the (deprecated) scrypt package in your project
+
+Compiling your contracts...
+===========================
+> Compiling ./contracts/Collectibles.sol
+> Compiling ./contracts/Migrations.sol
+> Compiling zeppelin/contracts/drafts/Counters.sol
+> Compiling zeppelin/contracts/introspection/ERC165.sol
+> Compiling zeppelin/contracts/introspection/IERC165.sol
+> Compiling zeppelin/contracts/math/SafeMath.sol
+> Compiling zeppelin/contracts/token/ERC721/ERC721.sol
+> Compiling zeppelin/contracts/token/ERC721/ERC721Enumerable.sol
+> Compiling zeppelin/contracts/token/ERC721/ERC721Full.sol
+> Compiling zeppelin/contracts/token/ERC721/ERC721Metadata.sol
+> Compiling zeppelin/contracts/token/ERC721/IERC721.sol
+> Compiling zeppelin/contracts/token/ERC721/IERC721Enumerable.sol
+> Compiling zeppelin/contracts/token/ERC721/IERC721Metadata.sol
+> Compiling zeppelin/contracts/token/ERC721/IERC721Receiver.sol
+> Compiling zeppelin/contracts/utils/Address.sol
+> Artifacts written to /home/manjain/Documents/Crypta-DigitalArt-Collectibles/build/contracts
+> Compiled successfully using:
+   - solc: 0.5.8+commit.23d335f2.Emscripten.clang
+
+
+
+Migrations dry-run (simulation)
+===============================
+> Network name:    'skale-fork'
+> Network id:      1
+> Block gas limit: 0xfffffff
+
+
+1_initial_migration.js
+======================
+
+   Deploying 'Migrations'
+   ----------------------
+   > block number:        76609
+   > block timestamp:     1567789365
+   > account:             0x6F174293D48d9a061c051113C4aA2173b931D70e
+   > balance:             0.999507214
+   > gas used:            246393
+   > gas price:           2 gwei
+   > value sent:          0 ETH
+   > total cost:          0.000492786 ETH
+
+   -------------------------------------
+   > Total cost:         0.000492786 ETH
+
+
+2_deploy_contracts.js
+=====================
+
+   Deploying 'Collectibles'
+   ------------------------
+   > block number:        76611
+   > block timestamp:     1567789428
+   > account:             0x6F174293D48d9a061c051113C4aA2173b931D70e
+   > balance:             0.991949712
+   > gas used:            3751728
+   > gas price:           2 gwei
+   > value sent:          0 ETH
+   > total cost:          0.007503456 ETH
+
+   -------------------------------------
+   > Total cost:         0.007503456 ETH
+
+
+Summary
+=======
+> Total deployments:   2
+> Final cost:          0.007996242 ETH
+
+
+
+
+
+Starting migrations...
+======================
+> Network name:    'skale'
+> Network id:      1
+> Block gas limit: 0xfffffff
+
+
+1_initial_migration.js
+======================
+
+   Deploying 'Migrations'
+   ----------------------
+   > transaction hash:    0x9fb1ef5cdf3182e7fcd406f1e44fd51102d7e3f6c4db9d61d0a7a32620974338
+   > Blocks: 2            Seconds: 11
+   > contract address:    0xc98085Cb1a1483E740C4cDDa649Bc8f6e134d188
+   > block number:        76622
+   > block timestamp:     1567789477
+   > account:             0x6F174293D48d9a061c051113C4aA2173b931D70e
+   > balance:             1
+   > gas used:            261393
+   > gas price:           0 gwei
+   > value sent:          0 ETH
+   > total cost:          0 ETH
+
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:                   0 ETH
+
+
+2_deploy_contracts.js
+=====================
+
+   Deploying 'Collectibles'
+   ------------------------
+   > transaction hash:    0x0127d6e02c55b620407c3bbb7d9ecf5a73ac46a4b410c1ee95cd24c183fd86fa
+   > Blocks: 1            Seconds: 6
+   > contract address:    0x03AD066928F092eca5bE6B59143c33F9C1E06BA5
+   > block number:        76626
+   > block timestamp:     1567789508
+   > account:             0x6F174293D48d9a061c051113C4aA2173b931D70e
+   > balance:             1
+   > gas used:            3851928
+   > gas price:           0 gwei
+   > value sent:          0 ETH
+   > total cost:          0 ETH
+
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:                   0 ETH
+
+
+Summary
+=======
+> Total deployments:   2
+> Final cost:          0 ETH
+
+
+
+
