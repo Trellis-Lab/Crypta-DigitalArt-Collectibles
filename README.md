@@ -3,7 +3,7 @@
 This project is made for Ethereal Gitcoin Hackathon
 >Author: Manank Patni
 
-The project creates a decentralised space for the designers and artists to showcase their craetions and earn from it. 
+The project creates a decentralised space for the designers and artists to showcase their creations and earn from it. This will be a completely decentralised platform for the artists to show out what they have made. The art can be digital arts or a traditional art. 
 
 It uses the ERC721 standard for the Non Fungible Token Creation. Any user can submit their art piece like a wallpaper, digital paing, poster or etc. They can showcase it and even trade it for ether.
 
